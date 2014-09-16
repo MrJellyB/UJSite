@@ -1,6 +1,16 @@
 var app = angular.module('band', [] );
 
+app.config(function($logProvider) {
+    $logProvider.debugEnabled(false);
+});
+
+app.run(function($rootScope, $log) {
+    $rootScope.$log = $log;
+});
+
 (function(){
+
+	// Controllers
 	app.controller('SiteController', ['$scope', function($scope){
 		this.mainViews = objVisible;
 		this.articles = [{}];
@@ -27,12 +37,26 @@ var app = angular.module('band', [] );
 		};
 	}]);
 
-	app.controller('CommentsController', function() {
+	app.controller('CommentsController', ['$scope', function($scope) {
 		this.block = {};
 		this.buildComment = function(article) {
 			article.comments.push(this.block);
 		};
-	});
+	}]);
+
+	app.controller('NavContentsController', ['$scope', function($scope) {
+		$scope.toggleVisibleContent = function(section_val, value){
+			console.log(section_val + ", " + value);
+
+			$("#article-section-" + section_val + " tab-comments[id^='fragment']").hide();
+
+			$("#article-section-" + section_val + " #fragment-" + value).toggle({
+				effect: "fold",
+				easing: "easeOutQuint",
+				duration: 800
+			});
+		};
+	}]);
 
 	// Direcives
 
@@ -66,7 +90,50 @@ var app = angular.module('band', [] );
 		author : "Shvacher Noam",
 		headline : "My first article",
 		body : "greetins, this is my first article, " + 
-				"i hope that everyone likes it!"
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n" + 
+				"i hope that everyone likes it!\n",
+		comments : [{
+			header : "Bla Bla Bla",
+			text : "I am a nice comment, please like me ):",
+			author : "Jesus",
+			date : new Date().getDate()
+		}]
 	},
 	{
 		author : "Shvacher Noam",
