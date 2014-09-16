@@ -23,7 +23,8 @@ $(document).ready(function(){
 	$(".artinav-content > div").height("150px");
 
 	$(".article-navbar").each(function (){
-		var originalParent = $(this).parent();
+		var index = $(this).prop("id").substring($(this).prop("id").indexOf("~") + 1);
+		var attachObject = $("#article-container-" + index);
 
 		$(this).css({
 			"position": "absolute",
@@ -32,21 +33,21 @@ $(document).ready(function(){
 			"top": "0px"
 		});
 
-		if (originalParent.height() < articleInitHeight) {
-			$(originalParent).height(articleInitHeight);
+		if (attachObject.height() < articleInitHeight) {
+			$(attachObject).height(articleInitHeight);
 			$(this).width(articleInitHeight);
 		};
 
 		$(this).css({
-			width: originalParent.height(),
-			paddingLeft: originalParent.css("padding-top"),
-			paddingRight: originalParent.css("padding-bottom")
+			width: attachObject.height(),
+			paddingLeft: attachObject.css("padding-top"),
+			paddingRight: attachObject.css("padding-bottom")
 		});
 
 		$(this).position({
 			my: "left top",
 			at: "left top",
-			of: originalParent,
+			of: attachObject,
 			collision: "none"
 		});
 

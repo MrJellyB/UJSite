@@ -48,9 +48,9 @@ app.run(function($rootScope, $log) {
 		$scope.toggleVisibleContent = function(section_val, value){
 			console.log(section_val + ", " + value);
 
-			$("#article-section-" + section_val + " tab-comments[id^='fragment']").hide();
+			$("#article-section\\~" + section_val + " tab-comments[id^='fragment']").hide();
 
-			$("#article-section-" + section_val + " #fragment-" + value).toggle({
+			$("#article-section\\~" + section_val + " #fragment-" + value).toggle({
 				effect: "fold",
 				easing: "easeOutQuint",
 				duration: 800

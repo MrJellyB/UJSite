@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<HTML ng-app="band">
+	<HEAD>
+		<link rel="stylesheet" href="./css/my.css">
+		<!-- <link rel="stylesheet" href="./css/blitzer/jquery-ui-1.10.4.custom.css"> -->
+		
+	</HEAD>
+	<BODY ng-controller="SiteController as site" id="bTop">
+		<script type="text/javascript" src="./js/consts.js"></script>
+		<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.transform2d.js"></script>
+		<script type="text/javascript" src="./js/jquery.dimensions.js"></script>
+		<script type="text/javascript" src="./js/jquery-ui.js"></script>
+		<script type="text/javascript" src="./js/angular.min.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script>
+		<script type="text/javascript" src="./js/myScripts.js"></script>
+		
+		<header id="site-header"><h1><img id="site-header-img" src="./pic/UJBanner05-min.png"</h1></header>
+		<nav class="navbar-right" id="navbarMain">
+			<ul class="nav-ul">
+				<li class="nav-li"><a href="#bTop" ng-click="toggleVisible(0);">Home</a></li>
+				<li class="nav-li"><a href="#bTop" ng-click="toggleVisible(1);">tours</a></li>
+				<li class="nav-li"><a href="#bTop" ng-click="toggleVisible(2);">media</a></li>
+				<li class="nav-li"><a href="#bTop" ng-click="toggleVisible(3);">news</a></li>
+			</ul>	
+		</nav>
+
+		<!-- testing -->
+		<div id="div-body0">
+		<header><h1 class="h-header">Home</h1></header>
+		
+			<div class="list-posts" ng-repeat="post in site.articles track by $index">
+
+				<article class="article-container" id="article-container-{{$index}}">
+					<!-- The article navigation bar -->
+					<section ng-init="tab = 1" 
+							 class="article-navbar tabs tabs-right tabs-right-rotate" 
+							 id="article-section~{{$index}}"
+							 ng-controller="NavContentsController as contents">
+						<ul>
+							<li><a href="" ng-click="toggleVisibleContent($index, 0)" id="navitem-1">Comments</a></li>
+								
+							<li><a ng-click="toggleVisibleContent($index, 1)" href="#fragment-2" id="navitem-2">Media</a></li>
+						</ul>
+
+						<tab-comments style="display:none;" ng-controller="CommentsController as comments" class="artinav-content" id="fragment-0">
+						</tab-comments>
+					</section>
+
+					<div class="post-content-div">
+						<div class="article-headline"><h2>{{post.headline}}</h2></div>
+						<div class="article-body">{{post.body}}</div>
+						<div class="article-author"><em>@{{post.author}}</em></div>
+					</div>
+				</article>
+			</div>
+		</div>
+		<div id="div-body1">
+		<header><h1 class="h-header">tours</h1></header>
+		
+			<div class="list-posts" ng-repeat="post in site.articles">
+				<article>
+					<div class="article-headline"><h2>{{post.headline}}</h2></div>
+					<div class="article-author"><em>@{{post.author}}</em></div>
+					<div class="article-body">{{post.body}}</div>
+				</article>
+			</div>
+		</div>
+	</BODY>
+</HTML>

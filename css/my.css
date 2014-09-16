@@ -174,7 +174,6 @@ ul[class="tabs-head"] li
 	/*-webkit-transform: rotate(90deg);*/
 	/*float: left;*/
 	background-opacity: 50%;
-	padding: initial;
 	text-decoration: blink;
 	border: 2px solid #686868;
 	border-top: transparent;
@@ -185,12 +184,15 @@ ul[class="tabs-head"] li
 .article-navbar ul
 {
 	text-align: center;
+	padding-left: 0;
 }
 
 .article-navbar li
 {
 	list-style: none;
 	width:10%;
+	display: inline;
+	margin: 0 5px 0 5px;
 }
 
 .article-navbar li a
