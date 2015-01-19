@@ -11,11 +11,27 @@ app.run(function($rootScope, $log) {
 (function(){
 
 	// Controllers
-	app.controller('SiteController', ['$scope', function($scope){
+	app.controller('SiteController', ['$http','$scope', function($http,$scope){
 		this.mainViews = objVisible;
-		this.articles = [{}];
-		buildData();
-		this.articles = posts;
+		$scope.articles = this.articles = [];
+
+		$http.get('http://localhost/php/getAllPosts')
+			 .success(function(data, status, headers, config){
+			 	//console.log(data);
+
+			 	// Add all posts to the article array
+			 	for (var nArticle = 0; nArticle < data.length; nArticle++) {
+			 		$scope.articles.push({author: "",
+			 							headline: data[nArticle].title,
+			 							body: data[nArticle].body});
+			 	};
+
+			 	
+			 })
+			 .error(function(data, status, headers, config){
+			 	console.log("ajax:fail " + status);
+			 });
+
 		$("#div-body").hide();
 		$("#div-body").ready(function(){
 			$("#div-body").fadeIn();
